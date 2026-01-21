@@ -58,9 +58,9 @@ RUN addgroup -g 1001 -S appgroup && \
 # Copy binary from builder
 COPY --from=builder /app/target/release/server /usr/local/bin/server
 
-# Create repos directory and set permissions
-RUN mkdir -p /repos && \
-    chown -R appuser:appgroup /repos
+# Create repos directory and data directory for persistent storage
+RUN mkdir -p /repos /data && \
+    chown -R appuser:appgroup /repos /data
 
 # Switch to non-root user
 USER appuser
